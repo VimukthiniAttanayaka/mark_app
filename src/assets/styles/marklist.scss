@@ -1,0 +1,27 @@
+body{
+    background-image: url("../images/background.jpg");
+    background-size: 100%;
+    h1{
+        /*color: rgb(97, 50, 205);*/
+        color: rgb(67, 109, 83);
+    }
+}
+.add{
+    color: rgb(38, 6, 156);
+}
+.marklist{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 575px;
+    height: auto;
+    background: rgb(170, 167, 170);
+    box-shadow: rgb(221, 218, 221) 20px 10px 10px;
+    border-radius: 10px;
+}
+
+@media (max-width: 575px) {
+    .marklist{
+        width: 100%;
+        height: auto;
+    }
+}
