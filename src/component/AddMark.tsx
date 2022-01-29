@@ -1,56 +1,61 @@
-import {useState} from 'react';
-import { Row, Col, Form, Button} from "react-bootstrap";
+import { useState } from 'react';
+import { Row, Col, Form, Button } from "react-bootstrap";
 import { XCircle } from 'react-feather';
 import NumberFormat from 'react-number-format';
+import { useToasts } from 'react-toast-notifications'
 
 type AddMarkProps = {
-    num:number
-    onCloseClick : () => void
-    teamMarkChange: (Mark:number|null,index:number) => void
+    num: number
+    onCloseClick: () => void
+    teamMarkChange: (Mark: number | null, index: number) => void
 }
 
-const AddMark:React.FC<AddMarkProps> = (props) => {
+const AddMark: React.FC<AddMarkProps> = (props) => {
     const [validated, setValidated] = useState(false);
 
-    const {num} = props
+    const { addToast } = useToasts()
+    const { num } = props
 
     const handleOnMarkChanged = (mark: number) => {
         setMark(mark);
     }
-    const [mark, setMark] = useState<number|null>();
+    const [mark, setMark] = useState<number | null>();
 
-    const handleOnSubmit = (event:any) => {
+    const handleOnSubmit = (event: any) => {
         const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
 
-    setValidated(true);
+        setValidated(true);
         event.preventDefault();
-        props.teamMarkChange(mark!,num)
-        //addToast("New Book Created", {appearance: 'success', autoDismiss: true});
+        if (!mark) {
+            return;
+        }
+        props.teamMarkChange(mark, num)
+        setMark(null)
+        addToast("Team Mark Updated", {appearance: 'success', autoDismiss: true});
     }
 
     return (
-        <Row>
-            <Col sm={4} className="mark-form mb-5">
+        <Row className='add-mark-form'>
+            <Col sm={12} className="mark-form px-5">
+
                 <Row>
-                    <Col sm={1} className='text-right'>
-                        <XCircle className="form-close" onClick={props.onCloseClick}/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Form className="pe-0 mb-3" noValidate validated={validated} onSubmit={handleOnSubmit}>
+                    <Form className="pe-0 my-3" noValidate validated={validated} onSubmit={handleOnSubmit}>
                         <Form.Group className="mb-3">
-                            <Form.Label className="mt-2">Current Marks</Form.Label>
-                            <NumberFormat placeholder="" required value={mark}
-                                    onValueChange={(values:any) => {
-                                        handleOnMarkChanged(values.value)
-                                    }}/>
+                            <Col sm={12}>
+                                <Form.Label className="mt-2 mx-0">Current Marks</Form.Label>
+                                <XCircle className='form-close' onClick={props.onCloseClick} />
+                            </Col>
+                            <NumberFormat className='form-control' placeholder="" required value={mark}
+                                onValueChange={(values: any) => {
+                                    handleOnMarkChanged(values.value)
+                                }} />
                         </Form.Group>
-                        <Button className="submit-btn p-0" type="submit">
-                            Create
+                        <Button className="submit-btn px-3 py-1" type="submit">
+                            Add
                         </Button>
                     </Form>
                 </Row>

@@ -3,7 +3,7 @@ import { Row, Col, Form, Button} from "react-bootstrap";
 import { XCircle } from 'react-feather';
 import { IMarkList } from "../types/MarkListTypes";
 import NumberFormat from 'react-number-format';
-//import { ToastProvider, useToasts } from 'react-toast-notifications';
+import { useToasts } from 'react-toast-notifications';
 
 type AuthorFormProps = {
     onCloseClick : () => void
@@ -12,6 +12,9 @@ type AuthorFormProps = {
 
 const TeamForm:React.FC<AuthorFormProps> = (props) => {
 
+    const { addToast } = useToasts()
+
+    const [validated, setValidated] = useState(false);
     /*const { addToast } = useToasts();*/
 
     const handleOnTeamNameChanged = (name: string) => {
@@ -27,11 +30,25 @@ const TeamForm:React.FC<AuthorFormProps> = (props) => {
     const [teamImage, setTeamImage] = useState<string>("");
     const [teamMark, setTeamMark] = useState<number|null>();
 
-    const handleOnSubmit = (ev:any) => {
-        ev.preventDefault();
-        const newTeam: IMarkList = {name: teamName,image:teamImage,marks:teamMark!};
+    const handleOnSubmit = (event:any) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
+        event.preventDefault();
+        if(!teamName || !teamMark){
+            return;
+        }
+        const newTeam: IMarkList = {name: teamName,image:teamImage,marks:teamMark};
         props.addTeam(newTeam)
-        //addToast("New Book Created", {appearance: 'success', autoDismiss: true});
+        addToast("New Team added", {appearance: 'success', autoDismiss: true});
+        setTeamImage("")
+        setTeamMark(null)
+        setTeamName("")
+        setValidated(false)
     }
 
     return (
@@ -46,27 +63,27 @@ const TeamForm:React.FC<AuthorFormProps> = (props) => {
                 </Col>
             </Row>
             <Row>
-            <Form className="pe-0" onSubmit={handleOnSubmit}>
-                <Form.Group className="mb-3">
+            <Form className="pe-0" noValidate validated={validated} onSubmit={handleOnSubmit}>
+                {/*<Form.Group className="mb-3">
                     <Form.Label className="mt-2">Image Name</Form.Label>
-                    <Form.Control type="text" placeholder="" value={teamImage}
+                    <Form.Control type="text" required placeholder="" value={teamImage}
                             onChange={(ev: React.ChangeEvent<HTMLInputElement>,) =>
                                 handleOnTeamImageChanged(ev.target.value)}/>
-                </Form.Group>
+                </Form.Group>*/}
                 <Form.Group className="mb-3">
                     <Form.Label className="mt-2">Name of Team</Form.Label>
-                    <Form.Control type="text" placeholder="" value={teamName}
+                    <Form.Control type="text" required placeholder="" value={teamName}
                             onChange={(ev: React.ChangeEvent<HTMLInputElement>,) =>
                                 handleOnTeamNameChanged(ev.target.value)}/>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label className="mt-2">Current Marks</Form.Label>
-                    <NumberFormat placeholder="" value={teamMark}
+                    <Form.Label className="mt-2 num-input">Current Marks</Form.Label>
+                    <NumberFormat required className="form-control" placeholder="" value={teamMark}
                             onValueChange={(values:any) => {
                                 handleOnTeamMarkChanged(values.value)
                             }}/>
                 </Form.Group>
-                <Button className="submit-btn p-0" type="submit">
+                <Button className="submit-btn px-3 py-1" type="submit">
                     Create
                 </Button>
                 </Form>

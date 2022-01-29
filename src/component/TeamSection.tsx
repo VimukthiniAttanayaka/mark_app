@@ -5,13 +5,14 @@ import TeamForm from "./TeamForm";
 import TeamList from "./TeamList";
 import Title from "./Title";
 import { IMarkList } from "../types/MarkListTypes";
+import { ToastProvider } from "react-toast-notifications";
 
 const TeamSection:React.FC = () => {
 
     const Teams:IMarkList[] = [
-        {image:'image1',name:'Author 1',marks:2000},
-        {image:'image1',name:'Author 2',marks:2000},
-        {image:'image1',name:'Author 3',marks:2000},
+        {image:'image1',name:'Team 1',marks:2000},
+        {image:'image1',name:'Team 2',marks:2000},
+        {image:'image1',name:'Team 3',marks:2000},
     ]
 
     const [isFormVisible,setIsFormVisible] = useState(false);
@@ -56,6 +57,7 @@ const TeamSection:React.FC = () => {
     }
     return (
         <Container fluid={true} className="marklist">
+            <ToastProvider>
             <Title/>
             <TeamList teams={teams}
                       deleteIndex={handleBookDeleted}
@@ -63,6 +65,7 @@ const TeamSection:React.FC = () => {
             <AddTeam onAddClick = {handleOnAddAuthorClick}/>
             {isFormVisible && <TeamForm onCloseClick = {handleOnCloseFormClick}
                                         addTeam = {handleTeamAdded}/>}
+            </ToastProvider>
         </Container>
     )
 };

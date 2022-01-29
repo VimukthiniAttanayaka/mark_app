@@ -15,8 +15,8 @@ const TeamList:React.FC<TeamListProps> = (props) => {
     const renderTeamList = () => {
         if(teams.length===0){
             return (
-                <Row className="empty-label">
-                    <p>no listed here</p>
+                <Row className="empty-label my-5">
+                    <p>Enter New Team List</p>
                 </Row>
             )
         }

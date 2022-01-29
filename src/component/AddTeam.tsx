@@ -8,12 +8,9 @@ type AddAuthorProps = {
 
 const AddTeam:React.FC<AddAuthorProps> = (props) => {
     return (
-        <Row className="mx-4 mb-3 pb-4" onClick={props.onAddClick}>
-            <Col sm={1} className="add">
-                <Plus/>
-            </Col>
-            <Col sm={11}>
-                Add New Team
+        <Row className="mx-4 mb-3 pb-4">
+            <Col sm={12} className="add-btn px-4 py-2" onClick={props.onAddClick}>
+                <Plus/>Add New Team
             </Col>
         </Row>
     )

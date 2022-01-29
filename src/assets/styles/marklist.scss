@@ -1,9 +1,15 @@
 body{
-    background-image: url("../images/background.jpg");
+    background-image: url("../images/stars.png");
     background-size: 100%;
     h1{
         /*color: rgb(97, 50, 205);*/
-        color: rgb(67, 109, 83);
+        color: darkblue;
+    }
+    h4{
+        margin: 0;
+    }
+    h5{
+        color: rgb(17, 51, 30);
     }
 }
 .add{
@@ -14,11 +20,40 @@ body{
     margin-bottom: 50px;
     width: 575px;
     height: auto;
-    background: rgb(170, 167, 170);
-    box-shadow: rgb(221, 218, 221) 20px 10px 10px;
+    background-color: #eaeaea;
+    /*box-shadow: rgb(221, 218, 221) 20px 10px 10px;*/
+    border-radius: 10px;
+    min-height: 500px;
+}
+.add-btn{
+    background-color: #af46bd;
+    font-weight: bold;
+    width: auto;
+    margin: auto;
     border-radius: 10px;
 }
+.num-input{
+    margin: 8px 0px;
 
+    .input{
+        padding: 6px 12px;
+        width: 100%;
+    }
+}
+.submit-btn{
+    background-color: #786fc9;
+    border: none;
+    float: right;
+    color: black;
+    font-weight: bold;
+}
+.form-close{
+    float: right;
+    text-align: right;
+}
+.empty-label{
+    font-style: italic;
+}
 @media (max-width: 575px) {
     .marklist{
         width: 100%;

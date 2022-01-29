@@ -24,8 +24,8 @@ const Team:React.FC<TeamProps> = (props) => {
 
     return (
         <Row className='teamlist mb-2'>
-            <Col sm={2}>
-                <h4 className='text-center'>{num}</h4>
+            <Col sm={2} className='m-0'>
+                <h4 className='text-center m-0'>{num}</h4>
             </Col>
             <Col sm={5}>
                 <h4>{team.name}</h4>
