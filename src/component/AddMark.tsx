@@ -36,6 +36,7 @@ const AddMark: React.FC<AddMarkProps> = (props) => {
         props.teamMarkChange(mark, num)
         setMark(null)
         addToast("Team Mark Updated", {appearance: 'success', autoDismiss: true});
+        props.onCloseClick()
     }
 
     return (

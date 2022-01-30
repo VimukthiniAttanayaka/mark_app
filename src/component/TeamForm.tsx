@@ -28,7 +28,7 @@ const TeamForm:React.FC<AuthorFormProps> = (props) => {
     }
     const [teamName, setTeamName] = useState<string>("");
     const [teamImage, setTeamImage] = useState<string>("");
-    const [teamMark, setTeamMark] = useState<number|null>();
+    const [teamMark, setTeamMark] = useState<number|null>(null);
 
     const handleOnSubmit = (event:any) => {
         const form = event.currentTarget;

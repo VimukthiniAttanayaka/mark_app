@@ -32,6 +32,7 @@ const TeamSection:React.FC = () => {
             const allTeams: IMarkList[] = teams.slice();
             allTeams.splice(index,1,team);
             setTeams(allTeams);
+            setIsFormVisible(false)
         }
     };
     const handleBookDeleted = (index: number) => {
