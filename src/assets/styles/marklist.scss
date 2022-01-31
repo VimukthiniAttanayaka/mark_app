@@ -14,6 +14,10 @@ body{
 }
 .add{
     color: rgb(38, 6, 156);
+    cursor: pointer;
+}
+.delete{
+    cursor: pointer;
 }
 .marklist{
     margin-top: 50px;
@@ -31,6 +35,11 @@ body{
     width: auto;
     margin: auto;
     border-radius: 10px;
+    cursor: pointer;
+}
+.add-btn:hover{
+    background-color: #b47fbb;
+    color: rgb(49, 49, 49);
 }
 .num-input{
     margin: 8px 0px;
@@ -50,6 +59,7 @@ body{
 .form-close{
     float: right;
     text-align: right;
+    cursor: pointer;
 }
 .empty-label{
     font-style: italic;
@@ -58,5 +68,9 @@ body{
     .marklist{
         width: 100%;
         height: auto;
+    }
+    .marks{
+        margin-left: -30px;
+        margin-right: 20px;
     }
 }

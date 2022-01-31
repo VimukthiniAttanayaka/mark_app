@@ -53,7 +53,7 @@ const TeamForm:React.FC<AuthorFormProps> = (props) => {
 
     return (
         <Row>
-            <Col sm={9} className="team-form mb-5 ms-5">
+            <Col xs={11} sm={9} className="team-form mb-5 ms-sm-5 ms-xs-3">
             <Row>
                 <Col sm={11}>
                     <h5>Create Team</h5>

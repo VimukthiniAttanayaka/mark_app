@@ -24,20 +24,20 @@ const Team:React.FC<TeamProps> = (props) => {
 
     return (
         <Row className='teamlist mb-2'>
-            <Col sm={2} className='m-0'>
+            <Col xs={2} className='m-0'>
                 <h4 className='text-center m-0'>{num}</h4>
             </Col>
-            <Col sm={5}>
+            <Col xs={5}>
                 <h4>{team.name}</h4>
             </Col>
-            <Col sm={2}>
+            <Col xs={2} className='marks'>
                 <h4>{team.marks}</h4>
             </Col>
-            <Col xs={3} className="text-end my-1 d-flex justify-content-end align-items-center">
-                <PlusCircle className="add me-3" onClick={AddMarkClick}/> 
-                <Trash2 className="text-danger delete me-3" onClick={()=>props.deleteIndex(num-1)}/>
+            <Col xs={3}className="text-end my-1 d-flex justify-content-end align-items-center">
+                <PlusCircle className="add mx-1" onClick={AddMarkClick}/> 
+                <Trash2 className="text-danger delete mx-1" onClick={()=>props.deleteIndex(num-1)}/>
             </Col>
-            <Col sm={12}>
+            <Col xs={12}>
             {isFormVisible && <AddMark onCloseClick = {handleOnCloseFormClick}
                                         teamMarkChange={props.teamMarkChange}
                                         num={num-1}/>}
