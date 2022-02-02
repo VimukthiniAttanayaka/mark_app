@@ -3,6 +3,7 @@ import { Row, Col, Image } from 'react-bootstrap';
 import { IMarkList } from '../types/MarkListTypes';
 import { PlusCircle,Trash2 } from 'react-feather';
 import AddMark from './AddMark';
+import CurrencyFormat from 'react-currency-format';
 
 type TeamProps = {
     team:IMarkList
@@ -23,7 +24,7 @@ const Team:React.FC<TeamProps> = (props) => {
     }
 
     return (
-        <Row className='teamlist mb-2'>
+        <Row className='teamlist mb-3'>
             <Col xs={2} className='m-0'>
                 <h4 className='text-center m-0'>{num}</h4>
             </Col>
@@ -31,7 +32,7 @@ const Team:React.FC<TeamProps> = (props) => {
                 <h4>{team.name}</h4>
             </Col>
             <Col xs={2} className='marks'>
-                <h4>{team.marks}</h4>
+                <CurrencyFormat value={team.marks} displayType={'text'} thousandSeparator={true} prefix={'$'} renderText={value => <h4 className='marks1'>{value}</h4>} />
             </Col>
             <Col xs={3}className="text-end my-1 d-flex justify-content-end align-items-center">
                 <PlusCircle className="add mx-1" onClick={AddMarkClick}/> 

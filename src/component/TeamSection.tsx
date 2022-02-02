@@ -10,9 +10,9 @@ import { ToastProvider } from "react-toast-notifications";
 const TeamSection:React.FC = () => {
 
     const Teams:IMarkList[] = [
-        {image:'image1',name:'Team 1',marks:2000},
-        {image:'image1',name:'Team 2',marks:2000},
-        {image:'image1',name:'Team 3',marks:2000},
+        {name:'Author 1', image:'hjh', marks: 2000},
+        {name:'Author 2', image:'hjh', marks: 2000},
+        {name:'Author 3', image:'hjh', marks: 2000},
     ]
 
     const [isFormVisible,setIsFormVisible] = useState(false);
@@ -26,14 +26,15 @@ const TeamSection:React.FC = () => {
     }
 
     const handleTeamAdded = (team:IMarkList) => {
-        const userConfirmation = window.confirm("Add Team Name?");
+        //const userConfirmation = window.confirm("Add Team Name?");
         const index=teams.length
-        if (userConfirmation === true) {
+        //if (userConfirmation === true) {
             const allTeams: IMarkList[] = teams.slice();
             allTeams.splice(index,1,team);
-            setTeams(allTeams);
+            const sorted = allTeams.sort((a, b) => b['marks'] - a['marks']);
+            setTeams(sorted);
             setIsFormVisible(false)
-        }
+        //}
     };
     const handleBookDeleted = (index: number) => {
         const userConfirmation = window.confirm("Delete Author Name?");
@@ -44,17 +45,18 @@ const TeamSection:React.FC = () => {
         }
     };
     const handleOnTeamMarkChange = (newmark: number|null,index:number) => {
-        //console.log(newmark,index)
+        /*console.log(newmark,index)
         const userConfirmation = window.confirm("Delete Author Name?");
-        if (userConfirmation === true) {
+        if (userConfirmation === true) {*/
             const changeTeam:IMarkList = teams[index]
             const oldnumber=Number(changeTeam.marks)
             const newnumber=Number(newmark)
             changeTeam.marks=oldnumber+newnumber
             const allTeams: IMarkList[] = teams.slice();
             allTeams.splice(index,1,changeTeam);
-            setTeams(allTeams);
-        }
+            const sorted = allTeams.sort((a, b) => b['marks'] - a['marks']);
+            setTeams(sorted);
+        //}
     }
     return (
         <Container fluid={true} className="marklist">

@@ -1,33 +1,33 @@
 import React from "react";
-import {Row} from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { IMarkList } from "../types/MarkListTypes";
 import Team from "./Team";
 
 type TeamListProps = {
-    teams:IMarkList[]
-    deleteIndex: (Index:number) => void
-    teamMarkChange: (Mark:number|null,index:number) => void
+    teams: IMarkList[]
+    deleteIndex: (Index: number) => void
+    teamMarkChange: (Mark: number | null, index: number) => void
 }
-const TeamList:React.FC<TeamListProps> = (props) => {
-    
-    const {teams} = props
+const TeamList: React.FC<TeamListProps> = (props) => {
+
+    const { teams } = props
 
     const renderTeamList = () => {
-        if(teams.length===0){
+        if (teams.length === 0) {
             return (
                 <Row className="empty-label my-5">
                     <p>Enter New Team List</p>
                 </Row>
             )
         }
-        else{
-            return ( 
+        else {
+            return (
                 <ol className="list-unstyled">
                     {
-                        teams.map((team:IMarkList,index:number) =>
-                        <Team num={index + 1} team={team} key={index}
-                        deleteIndex={props.deleteIndex}
-                        teamMarkChange={props.teamMarkChange}/>)
+                        teams.map((team: IMarkList, index: number) =>
+                            <Team num={index + 1} team={team} key={index}
+                                deleteIndex={props.deleteIndex}
+                                teamMarkChange={props.teamMarkChange} />)
                     }
                 </ol>
             );

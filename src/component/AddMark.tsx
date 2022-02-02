@@ -47,10 +47,10 @@ const AddMark: React.FC<AddMarkProps> = (props) => {
                     <Form className="pe-0 my-3" noValidate validated={validated} onSubmit={handleOnSubmit}>
                         <Form.Group className="mb-3">
                             <Col sm={12}>
-                                <Form.Label className="mt-2 mx-0">Current Marks</Form.Label>
+                                <Form.Label className="mt-2 mx-0">Add Marks</Form.Label>
                                 <XCircle className='form-close' onClick={props.onCloseClick} />
                             </Col>
-                            <NumberFormat className='form-control' placeholder="" required value={mark}
+                            <NumberFormat className='form-control' placeholder="" required prefix={'$ '} thousandSeparator={true} value={mark}
                                 onValueChange={(values: any) => {
                                     handleOnMarkChanged(values.value)
                                 }} />
@@ -65,3 +65,5 @@ const AddMark: React.FC<AddMarkProps> = (props) => {
     )
 }
 export default AddMark;
+
+//https://stackoverflow.com/questions/55556221/how-do-you-format-a-number-to-currency-when-using-react-native-expo
