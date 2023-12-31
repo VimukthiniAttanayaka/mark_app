@@ -21,7 +21,7 @@ Check out the live demo: https://mark-app-86e0f.web.app/
 
 To run the project locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/mark-app.git`
+1. Clone the repository: `git clone https://github.com/VimukthiniAttanayaka/mark_app.git`
 2. Navigate to the project directory: `cd mark-app`
 3. Install dependencies: `npm install`
 4. Run the app: `npm start`
